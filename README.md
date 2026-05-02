@@ -8,32 +8,7 @@ The written report explains the background, methodology, and interpretation. Thi
 
 The project follows one core pipeline, then several analysis scripts reuse the same outputs.
 
-```text
-RouteViews BGP updates
-        |
-        v
-src/ingest.py
-        |
-        v
-output/ingested_updates.csv
-        |
-        +-----------------------------+
-        |                             |
-        v                             v
-src/aspa_cache.py              src/aspa_verifier.py
-relationship data              path checking engine
-        |                             |
-        +-------------+---------------+
-                      |
-                      v
-              src/analyze.py
-                      |
-                      v
-     output/all_results_*.csv, output/statistics_*.json
-                      |
-                      v
-              downstream analysis scripts
-```
+![Network Security Architecture](ns_architecture.png)
 
 `src/aspa_cache.py` and `src/aspa_verifier.py` are the shared core. Most later scripts import them instead of reimplementing validation.
 
