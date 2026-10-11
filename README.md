@@ -1,8 +1,23 @@
 # BGP Route Leak Detection with ASPA
 
-This repository contains the code and generated figures for an empirical BGP route-leak analysis using ASPA-style path validation.
+This project investigates BGP routing threats and evaluates which routing-security mechanisms could help prevent their propagation when deployed. The main focus is route leaks, with a comparison against unauthorized route-origin announcements.
 
-The written report explains the background, methodology, and interpretation. This README focuses on how the codebase is organized, how the scripts connect, what data files are required, and how to reproduce the outputs.
+## Project Summary
+
+- Investigate route leaks through historical BGP updates, including the Rostelecom 2020 and Verizon/DQE 2019 incidents.
+- Evaluate Autonomous System Provider Authorization (ASPA)-style path validation for detecting unauthorized provider relationships and routing-policy violations.
+- Compare ASPA with RPKI-based Route Origin Validation (ROV), which checks whether an autonomous system is authorized to originate a prefix.
+- Study how partial ASPA deployment and missing authorization records affect detection coverage.
+
+The study uses offline validation and incident replay to assess which routes could be flagged for rejection if validation and filtering were deployed. It does not implement filtering on live routers. CAIDA relationship data is used to model ASPA deployment alongside analysis using real authorization records.
+
+## My Implementation
+
+- Built a pipeline to ingest BGP updates, load authorization and AS-relationship data, and classify paths as valid, invalid, or unknown.
+- Implemented the shared ASPA-style path verifier and the comparison with route-origin validation.
+- Added deployment simulations, historical incident replays, geographic and path-length analyses, and charts for interpreting the results.
+
+The sections below describe the code organization, required data, and steps for reproducing the analysis.
 
 ## Project Flow
 
